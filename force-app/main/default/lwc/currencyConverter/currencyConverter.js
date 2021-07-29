@@ -3,11 +3,11 @@ import getCurrencyRates from '@salesforce/apex/CurrencyConverter.getCurrencyRate
 
 export default class CurrencyConverter extends LightningElement {
 
-    @track rates = []
-    @track amount = 1
-    @track baseCurrency = ''
-    @track targetCurrency = ''
-    @track convertedValue
+    @track rates = [];
+    @track amount = 1;
+    @track baseCurrency = 'EUR';
+    @track targetCurrency = '';
+    @track convertedValue;
     @track currencies = [];
     
     // some quick actions for common currencies 
@@ -15,7 +15,8 @@ export default class CurrencyConverter extends LightningElement {
         return [
           { label: "EUR", value: "EUR" },
           { label: "USD", value: "USD" },
-          { label: "JPY", value: "JPY" }
+          { label: "JPY", value: "JPY" },
+          { label: "GBP", value: "GBP" }
         ];
     }
 
@@ -34,17 +35,10 @@ export default class CurrencyConverter extends LightningElement {
     }
 
     connectedCallback() {
-        this.getRates()
+        this.getRates();
     }
 
     handleInputChange(e) {
-        this[e.target.name] = e.target.value;
-        this.convertedValue = null;
-        this.calculateConversion(e);
-    }
-
-
-    handleAmountChange(e) {
         this[e.target.name] = e.target.value;
         this.convertedValue = null;
         this.calculateConversion(e);

@@ -1,70 +1,71 @@
 <template>
     <lightning-card>
-        <h3 slot="title">
-        </h3>
-        <div class="slds-align_absolute-center slds-text-heading_large slds-m-top_large">
-            <div style="text-align: right">
-                <lightning-input
-                    style="text-align: right"
-                    name="amount"
-                    variant="label-hidden"
-                    type="number"
-                    value={amount} 
-                    onchange={handleInputChange}>
-                </lightning-input>
-            </div>
-            <h1>
-                 {baseCurrency} = <strong>{convertedValue}</strong> {targetCurrency}
-            </h1>
-        </div>
-        <lightning-layout vertical-align="center">
-            <!--Input Currencies-->
-            <lightning-layout-item padding="around-small" flexibility="auto">
-                <div>
-                    <lightning-radio-group
-                        label="From"
-                        name="baseCurrency"
-                        options={basicConvertOps}
-                        value={baseCurrency}
-                        onchange={handleInputChange}
-                        type="button">
-                    </lightning-radio-group>
-
-                    <lightning-combobox
-                        disabled
-                        name="baseCurrency"
-                        placeholder="Other Currencies"
-                        value={baseCurrency}
-                        options={currencies}
-                        onchange={handleInputChange}
-                        >
-                    </lightning-combobox>
-                </div>
-            </lightning-layout-item>
-            <!--Output Currencies-->
-            <lightning-layout-item padding="around-small" flexibility="auto">
-                <div>
-                    <lightning-radio-group
-                            name="targetCurrency"
-                            label="To"
-                            options={basicConvertOps}
-                            value={targetCurrency}
-                            onchange={handleInputChange}
-                            type="button">
-                    </lightning-radio-group>
-                </div>
-                <div>
-                    <div>
-                        <lightning-combobox
-                            name="targetCurrency"
-                            placeholder="Other Currencies"
-                            value={targetCurrency}
-                            options={currencies}
+        <h3 slot="title"></h3>
+            <div>
+                <lightning-layout horizontal-align="spread" vertical-align="stretch" multiple-rows="true">
+                    <lightning-layout-item padding="around-small" size="6">
+                        <lightning-input
+                            name="amount"
+                            variant="label-hidden"
+                            type="number"
+                            value={amount} 
                             onchange={handleInputChange}>
-                        </lightning-combobox>
-                    </div>
-                </div>
-            </lightning-layout-item>
-        </lightning-layout>
+                        </lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item padding="around-small" size="6">
+                        <div if:true={convertedValue} class="slds-text-heading_medium">
+                            {baseCurrency} = <strong>{convertedValue}</strong> {targetCurrency}
+                        </div>
+                    </lightning-layout-item>
+                    <!--Input Currencies-->
+                    <lightning-layout-item padding="around-small" size="6" large-device-size="6" medium-device-size="12">
+                        <div>
+                            <lightning-radio-group
+                                disabled
+                                label="From"
+                                name="baseCurrency"
+                                options={basicConvertOps}
+                                value={baseCurrency}
+                                onchange={handleInputChange}
+                                type="button">
+                            </lightning-radio-group>
+                        </div>
+                        <div>
+                            <lightning-combobox
+                                disabled
+                                name="baseCurrency"
+                                placeholder="Other Currencies"
+                                value={baseCurrency}
+                                options={currencies}
+                                dropdown-alignment="bottom-left"
+                                onchange={handleInputChange}>
+                            </lightning-combobox>
+                        </div>
+                    </lightning-layout-item>
+                    <!--Output Currencies-->
+                    <lightning-layout-item padding="around-small" size="6" large-device-size="6" medium-device-size="12">
+                        <div>
+                            <lightning-radio-group
+                                name="targetCurrency"
+                                label="To"
+                                options={basicConvertOps}
+                                value={targetCurrency}
+                                onchange={handleInputChange}
+                                type="button">
+                            </lightning-radio-group>
+                        </div>
+                        <div>
+                            <lightning-combobox
+                                name="targetCurrency"
+                                placeholder="Other Currencies"
+                                value={targetCurrency}
+                                options={currencies}
+                                dropdown-alignment="bottom-left"
+                                onchange={handleInputChange}>
+                            </lightning-combobox>
+                        </div>
+                    </lightning-layout-item>
+            </lightning-layout>
+        </div>
     </lightning-card>
 </template>
