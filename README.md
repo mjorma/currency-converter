@@ -1,18 +1,32 @@
-# Salesforce DX Project: Next Steps
+## Get started
+1. Get a free API Key at https://fixer.io/product
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
 
-## How Do You Plan to Deploy Your Changes?
+2. Clone the repository:
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+    ```
+    git clone https://github.com/mjorma/currency-converter
+    ```
 
-## Configure Your Salesforce DX Project
+3. Replace the key in the custom label file:
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
 
-## Read All About It
+4. Create a scratch org and provide it with an alias:
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+    ```
+    sfdx force:org:create -s -f config/project-scratch-def.json -a currency-converter
+    ```
+
+5. Push the app to your scratch org:
+
+    ```
+    sfdx force:source:push
+    ```
+
+## About the curreny converter
+
+The currency converter uses the fixer.io api to calculate the conversion between euro and other currencies. The lwc is available for the lightning homepage and the utility bar. I recommend to create a utility item (width 520px) to use the component flexible. 
+
+ ![Utility Item](https://github.com/mjorma/currency-converter/blob/feature/add-currency-converter/currency_converter.png?raw=true)
+
+The quick action buttons can be used to select the most traded currencies. Other currencies can be selected via the dropdown. Since only the euro input variable is available in the free key, editing the base currency is disabled.
