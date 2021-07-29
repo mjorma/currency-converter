@@ -1,5 +1,6 @@
 /**
- * This class is called from the currencyConverter lwc to display the currency conversion 
+ * This class is called from the currencyConverter lwc to display the currency conversion
+ * between two currencies. Unfortunately the free key only allows Euro as the base currency.
  */
 
 public with sharing class CurrencyConverter {
@@ -11,7 +12,7 @@ public with sharing class CurrencyConverter {
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         // unfortunately the free key does not provide SSL encryption 
-        request.setEndpoint('http://data.fixer.io/api/latest?access_key=');
+        request.setEndpoint('http://data.fixer.io/api/latest?access_key=' + Label.FIXER_KEY);
         request.setMethod('GET');
         HttpResponse response = http.send(request);
 
